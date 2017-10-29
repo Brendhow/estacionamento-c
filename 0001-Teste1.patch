@@ -1,0 +1,159 @@
+From e94201411d172b8f85b7dc4ecf9cb298e8b431eb Mon Sep 17 00:00:00 2001
+From: ¿˜x§ <†çìûU>
+Date: Sun, 29 Oct 2017 18:28:00 -0200
+Subject: [PATCH] Teste1
+
+---
+ pim.c | 139 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 139 insertions(+), 0 deletions(-)
+ create mode 100644 pim.c
+
+diff --git a/pim.c b/pim.c
+new file mode 100644
+index 0000000..e652460
+--- /dev/null
++++ b/pim.c
+@@ -0,0 +1,139 @@
++#include <stdio.h>
++#include <stdlib.h>
++#include <locale.h>
++//#include <conio.h> //clrscr
++
++
++void descontoIdoso(double preco);
++void descontoONG(double preco);
++void menu();
++void CadastrarCliente();
++void ConsultarVagas();
++void estrelinhas(char CaracterMenu);
++void sair();
++void fechar();
++
++/*
++struct cadastroCliente
++{
++    char CPF[200];
++    char telefone[200];
++    char nome[200];
++    char endereco[200];
++    char data[200];
++    int vazio,cod;
++    struct pedido clientePed;
++   
++}log[200];*/
++
++
++int op; //vari√°vel da opera√ß√£o de escolha.
++
++void main(){
++ setlocale(LC_ALL, "");					
++	double preco,total;
++
++	
++	do{
++        menu();
++        scanf("%d", &op);
++
++        switch(op){
++            case 0:sair();break;
++            case 1: CadastrarCliente();break;
++            case 2: ConsultarVagas();break; 
++            case 3 :
++	            printf("Entre com o pre√ßo R$");
++	            scanf("%lf", &preco);
++	            //system("pause");
++	            system("clear");break;
++            case 4: descontoIdoso(preco);break;
++            case 5: descontoONG(preco);break;
++            default: printf("\nentre com outra op√ß√£o\n\n");break;
++        }
++	}while(op!=0 /*|| op <4 || op < 0*/);
++
++}
++
++void CadastrarCliente(){
++
++
++}
++
++void ConsultarVagas(){
++
++
++}
++
++
++void descontoIdoso( double preco){
++	double total=0;
++	total= preco - ((preco * 10)/100);
++	printf("\nO pre√ßo com o desconto para idoso ->R$%0.2lf\n", total);
++	//system("pause");
++	system("clear");
++}
++
++void descontoONG( double preco){
++	double total=0;
++	total= preco - ((preco * 5)/100);
++	printf("\nO pre√ßo com o desconco para ONG ->R$%0.2lf\n", total);
++	//system("pause");
++	system("clear");
++}
++
++void menu(){
++	estrelinhas('_');
++    printf("\nLegal Rent a Cars\n");
++	printf("\n0 - Sair.\n");
++	printf("1 - Cadastrar cliente.\n");
++	printf("2 - Consultar vagas.\n");
++	printf("3 - Adicionar pre√ßo.\n");
++	printf("4 - Ver pre√ßo com desconto de idosos.\n");
++	printf("5 - Ver pre√ßo com desconto de ONG.\n\n");
++	estrelinhas('_');
++	printf("\nEntre com a op√ß√£o: ");
++}
++
++void estrelinhas(char CaracterMenu){
++	for(int x = 0;x < 80;x++){
++		printf(" %c", CaracterMenu);
++	}
++	printf("\n");
++}
++
++void sair(){
++
++	char VerificarSaida;
++
++	do{
++		printf("\nDeseja mesmo sair? (s/n): ");
++		scanf(" %c", &VerificarSaida);
++
++		if(VerificarSaida == 's'){
++    		printf("saindo\n");
++            system("exit");
++            fechar();
++            break;
++		
++		}else if(VerificarSaida == 'n'){
++			system("clear");
++			op = 4;
++			break;
++		}
++		else {
++			system("clear");
++			printf("\nDigite somente S ou N");
++				
++		}
++	}while(VerificarSaida != 's');
++}
++
++void fechar(){
++        char retorno[20], comando[30];
++        FILE *p = popen("ps | grep 'bash' | awk '{print $1}'", "r");
++        fgets(retorno, 18,p);
++        pclose(p);
++        sprintf(comando, "kill -9 %s", retorno);
++        system(comando);
++    }
+\ No newline at end of file
+--
+libgit2 0.24.0
+
